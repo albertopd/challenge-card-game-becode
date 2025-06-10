@@ -7,15 +7,23 @@ from utils.player import Player
 
 class Deck:
     """
-    Class to encapsulate a deck object that contains a list of cards
+    Class to encapsulate a Deck object that contains a list of cards
     """
 
     def __init__(self) -> None:
+        """
+        Constructor for creating a new Deck object with an empty list of cards.
+        """
         self.cards: List[Card] = []
 
     def __str__(self) -> str:
+        """
+        Method that returns a string representation of a Deck object.
+
+        :return: A str containing the comma separated list of all the cards in the deck.
+        """
         return ", ".join([str(card) for card in self.cards])
-    
+
     def fill_deck(self) -> None:
         """
         Method that will fill cards with a complete card game 
@@ -25,8 +33,8 @@ class Deck:
         self.cards = [Card(icon, value) for icon in Symbol.RED_SYMBOLS + Symbol.BLACK_SYMBOLS for value in Card.CARD_VALUES]
 
     def shuffle(self) -> None:
-        """ 
-        Method that will shuffle all the list of cards
+        """
+        Method that will shuffle all cards in the list.
         """
         random.shuffle(self.cards)
 
@@ -35,7 +43,7 @@ class Deck:
         Method that take a list of Player as parameter and will distribute
         the cards evenly between all the players.
 
-        :param players: A list of objects Player to which the cards should be distribute.
+        :param players: A list of objects Player to which the cards should be distribute to.
         """
         if players:
             player_index = 0
