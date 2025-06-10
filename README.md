@@ -1,1 +1,3 @@
-# challenge-card-game-becode
+# Challenge card game - BeCode
+
+Simple card game
