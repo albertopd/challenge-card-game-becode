@@ -38,17 +38,24 @@ class Deck:
         """
         random.shuffle(self.cards)
 
-    def distribute(self, players: List[Player]) -> None:
+    def distribute(self, players: List[Player], equal_num_of_cards: bool = False) -> int:
         """
         Method that take a list of Player as parameter and will distribute
         the cards evenly between all the players.
 
         :param players: A list of objects Player to which the cards should be distribute to.
+        :param equal_num_of_cards: A bool to enforce the same number of cards per player (default is False).
+        :return: An int representing the number of distributed cards.
         """
         if players:
             player_index = 0
 
-            while self.cards:
+            if equal_num_of_cards:
+                num_cards_to_distribute = (len(self.cards) // len(players)) * len(players)
+            else:
+                num_cards_to_distribute = len(self.cards)
+
+            for _ in range(num_cards_to_distribute):
                 card = self.cards.pop()
                 player = players[player_index]
 
@@ -58,3 +65,7 @@ class Deck:
                     player_index = 0
                 else:
                     player_index += 1
+
+            return num_cards_to_distribute
+        else:
+            return 0

@@ -9,13 +9,15 @@ class Board:
     Class to encapsulate a board game object.
     """
 
-    def __init__(self, players: List[Player]) -> None:
+    def __init__(self, players: List[Player], equal_num_of_cards: bool = False) -> None:
         """
         Constructor for creating a new Board object.
 
         :param players: A list of Player objects.
+        :param equal_num_of_cards: A bool to enforce the same number of cards per player (default is False).
         """     
         self.players = players
+        self.equal_num_of_cards = equal_num_of_cards
         self.turn_count = 0
         # List of last cards played by each player.
         self.active_cards: List[Card | None] = [None for _ in range(len(players))]
@@ -41,15 +43,16 @@ class Board:
         deck.fill_deck()
         deck.shuffle()
 
-        total_cards = len(deck.cards)
-
         # Distribute the cards on the Deck to the players
-        deck.distribute(self.players)
+        distributed_cards = deck.distribute(self.players, self.equal_num_of_cards)
+
+        for player in self.players:
+            print(f"Player {player.name} got {len(player.cards)} cards")
 
         cards_played = 0
 
         # Do turns until all cards are played
-        while cards_played < total_cards:
+        while cards_played < distributed_cards:
 
             for player_index in range(len(self.players)):
 
