@@ -1,3 +1,5 @@
+from colorama import Fore, Back, Style
+
 
 class Symbol:
     """
@@ -20,7 +22,7 @@ class Symbol:
         Black for: ♣, ♠
 
         :param icon: A str containing one of the characters [♥,♦,♣,♠].
-        """ 
+        """
         self.icon = icon
 
     @property
@@ -102,4 +104,4 @@ class Card(Symbol):
 
         :return: A str containing the description of the card in the form of: value icon color.
         """
-        return f"{self.value} {super().__str__()}"
+        return f"{Fore.RED if self._color == self.RED_COLOR else Fore.BLACK}{Back.WHITE}[{self.value} {super().__str__()}]{Style.RESET_ALL}"
