@@ -10,6 +10,11 @@ class Board:
     """
 
     def __init__(self, players: List[Player]) -> None:
+        """
+        Constructor for creating a new Board object.
+
+        :param players: A list of Player objects.
+        """     
         self.players = players
         self.turn_count = 0
         # List of last cards played by each player.
@@ -18,9 +23,17 @@ class Board:
         self.history_cards: List[Card] = []
 
     def __str__(self) -> str:
-        return ""
+        """
+        Method that returns a string representation of a Board object.
+
+        :return: A str containing the current turn + number of card in the history + active cards.
+        """
+        return f"TURN {self.turn_count} | {len(self.history_cards)} cards in history | Active cards: {", ".join([str(card) for card in self.active_cards])}"
     
     def start_game(self) -> None:
+        """
+        Method that start a card game and runs until all cards all played.
+        """
         print(">>> Game started!")
 
         # Fill a Deck and shuffle it
@@ -58,6 +71,6 @@ class Board:
 
             self.turn_count += 1
 
-            print(f"TURN {self.turn_count} | {len(self.history_cards)} cards in history | Active cards: {", ".join([str(card) for card in self.active_cards])}")
+            print(self)
         
         print("<<< Game ended!")
