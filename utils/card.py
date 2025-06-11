@@ -100,10 +100,20 @@ class Card(Symbol):
 
     @property
     def value(self) -> str:
+        """
+        Property that returns the value of the Card.
+
+        :return: A str representing the value.
+        """
         return self._value
 
     @value.setter
     def value(self, value: str):
+        """
+        Property setter that updates the value of the Card.
+
+        :param value: A str representing the value which must be one of these: ['A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K']
+        """
         if value not in self.CARD_VALUES:
             raise ValueError(f"Invalid value {value}. Allowed values: {self.CARD_VALUES}")
         else:
