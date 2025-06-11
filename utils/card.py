@@ -42,9 +42,9 @@ class Symbol:
         :param icon: A str representing the icon.
         """
         if icon in self.RED_SYMBOLS:
-            self.color = self.RED_COLOR
+            self._color = self.RED_COLOR
         elif icon in self.BLACK_SYMBOLS:
-            self.color = self.BLACK_COLOR
+            self._color = self.BLACK_COLOR
         else:
             raise ValueError(f"Invalid icon {icon}. Allowed icons: {self.RED_SYMBOLS + self.BLACK_SYMBOLS}")
         self._icon = icon
@@ -57,18 +57,6 @@ class Symbol:
         :return: A str representing the color.
         """
         return self._color
-
-    @color.setter
-    def color(self, color: str):
-        """
-        Property setter that updates the color of the Symbol.
-
-        :param icon: A str representing the color.
-        """
-        if color in (self.RED_COLOR, self.BLACK_COLOR):
-            self._color = color
-        else:
-            raise ValueError(f"Invalid color {color}. Allowed colors: {self.RED_COLOR}, {self.BLACK_COLOR}")
 
     def __str__(self) -> str:
         """
