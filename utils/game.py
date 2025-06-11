@@ -59,9 +59,9 @@ class Board:
                 current_player = self.players[player_index]
 
                 # Make each Player play a card (if they still have some to play)
-                if current_player.number_of_cards > 0:
-                    played_card = current_player.play()
+                played_card = current_player.play()
 
+                if played_card:
                     # Set the last card played by the current player
                     self.active_cards[player_index] = played_card
 
